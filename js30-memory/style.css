@@ -1,0 +1,86 @@
+/* styles.css */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    display: flex;
+    background: #060AB2;
+  }
+  
+  .memory-game {
+    width: 640px;
+    height: 640px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .memory-card {
+    width: calc(25% - 10px);
+    height: calc(33.333% - 10px);
+    margin: 5px;
+    position: relative;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+  }
+  
+  .front-face,
+  .back-face {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    position: absolute;
+    border-radius: 5px;
+    background: #1C7CCC;
+  }
+
+
+
+  footer {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    top: 80vh;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    opacity: .3;
+  }
+
+  .logo {
+    display: flex;
+    width: 8rem;
+    height: 8rem;
+    
+  }
+
+  .logo:hover {
+    scale: 1.2;
+    transition: all 1s;
+  }
+
+  .by {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .years {
+    font-size: 3rem;
+    color: white;
+  }
+
+  .github {
+    display: flex;
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .github:hover {
+    scale: 1.2;
+    transition: all 1s;
+  }
