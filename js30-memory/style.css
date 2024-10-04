@@ -9,7 +9,9 @@
   body {
     height: 100vh;
     display: flex;
-    background: #060AB2;
+    /* background: #060AB2; */
+    background-image: url(src/background.jpg);
+    background-size: cover;
   }
   
   .memory-game {
@@ -49,9 +51,12 @@
     position: absolute;
     border-radius: 5px;
     background: #1C7CCC;
+    backface-visibility: hidden;
   }
   
-  
+  .front-face {
+    transform: rotateY(180deg);
+  }
 
 
 
