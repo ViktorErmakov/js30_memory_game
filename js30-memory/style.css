@@ -60,6 +60,10 @@
     transform: rotateY(180deg);
   }
 
+  .back-face {
+    opacity: .6;
+  }
+
 
 
   footer {
