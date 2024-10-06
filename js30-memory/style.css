@@ -15,12 +15,13 @@
   }
   
   .memory-game {
-    width: 640px;
-    height: 640px;
+    width: 720px;
+    height: 680px;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
     perspective: 1000px;
+    z-index: 100;
   }
 
   .memory-card {
@@ -32,6 +33,7 @@
     transform: scale(1);
     transform-style: preserve-3d;
     transition: transform .5s;
+    cursor: pointer;
   }
   
   .memory-card:active {
@@ -58,6 +60,10 @@
     transform: rotateY(180deg);
   }
 
+  .back-face {
+    opacity: .6;
+  }
+
 
 
   footer {
@@ -69,6 +75,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     opacity: .3;
+    z-index: 0;
   }
 
   .logo {
@@ -103,4 +110,8 @@
   .github:hover {
     scale: 1.2;
     transition: all 1s;
+  }
+
+  img {
+    /* object-fit: cover; */
   }
