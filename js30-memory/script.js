@@ -4,9 +4,11 @@ let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
 let turns = 0;
-let turnsElement = document.querySelector('.turns');
+let recordTableElement = document.querySelector('.recordTable');
 let score = document.querySelector('.score');
 const newGame = document.querySelector('.newGame');
+let recordTable = localStorage.getItem('recordTable') == undefined ? [] : JSON.parse(localStorage.getItem('recordTable'));
+// console.log(recordTable);
 
 function flipCard() {
 
@@ -54,7 +56,32 @@ function resetBoard() {
     let flips = document.querySelectorAll('.flip');
     if (flips.length === cards.length) {
 
-        turnsElement.textContent = `Number of turns: ${turns}`;
+        recordTable.push(turns);
+        recordTable.sort();
+        localStorage.setItem('recordTable', JSON.stringify(recordTable));
+        console.log(recordTable);
+
+        textContent = `Number of turns: \n`;
+        recordTable.forEach(element => {
+            
+        });
+        for (let index = 0; index < recordTable.length; index++) {
+            
+            const element = recordTable[index];
+            
+            newString = document.createElement('div');
+            newString.textContent = `${index + 1}. ${element}`;
+            if (element === turns) {
+                newString.style.fontWeight = 'bold';
+                newString.style.color = 'aqua';
+            }
+            recordTableElement.appendChild(newString);
+            // найти такие же очки, если есть то только выделить жирным, если нет то добавить и выделить жирным.
+            // сделать ограничение только до 10 элементов
+        }
+        
+        
+        turns = 0;
         score.classList.add('score_active');
     }
 }
@@ -72,10 +99,8 @@ function AddFlipCard() {
 
     newGame.addEventListener('click', () => {
         
-        localStorage.setItem('turns', turns);
-        console.log(localStorage.getItem('turns'));
-
         turns = 0;
+        recordTableElement.innerHTML = '';
         let flips = document.querySelectorAll('.flip');
         flips.forEach(element => {
             element.classList.remove('flip');
