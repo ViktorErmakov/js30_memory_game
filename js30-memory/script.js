@@ -4,9 +4,11 @@ let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
 let turns = 0;
-let turnsElement = document.querySelector('.turns');
+let recordTableElement = document.querySelector('.recordTable');
 let score = document.querySelector('.score');
 const newGame = document.querySelector('.newGame');
+let recordTable = localStorage.getItem('recordTable') == undefined ? [] : JSON.parse(localStorage.getItem('recordTable'));
+// console.log(recordTable);
 
 function flipCard() {
 
@@ -54,26 +56,50 @@ function resetBoard() {
     let flips = document.querySelectorAll('.flip');
     if (flips.length === cards.length) {
 
-        turnsElement.textContent = `Number of turns: ${turns}`;
+        recordTableElement.innerHTML = '';
+        if (recordTable.length = 10) {
+            recordTable.splice(0, 1);
+        }
+        recordTable.push(turns);
+        localStorage.setItem('recordTable', JSON.stringify(recordTable));
+        
+        textContent = `Number of turns: \n`;
+        recordTable.forEach(element => {
+
+        });
+        for (let index = 0; index < recordTable.length; index++) {
+
+            const element = recordTable[index];
+
+            newString = document.createElement('div');
+            newString.textContent = `${index + 1}. ${element}`;
+
+            if (index === recordTable.length - 1 ) {
+                newString.style.fontWeight = 'bold';
+                newString.style.color = 'aqua';
+            };
+
+            recordTableElement.appendChild(newString);
+
+        }
+
+        turns = 0;
         score.classList.add('score_active');
     }
 }
 
 function shuffle() {
-    // cards.forEach(card => {
-    //     let ramdomPos = Math.floor(Math.random() * 12);
-    //     card.style.order = ramdomPos;
-    // });
+    cards.forEach(card => {
+        let ramdomPos = Math.floor(Math.random() * 12);
+        card.style.order = ramdomPos;
+    });
 };
 
 function AddFlipCard() {
-    
+
     cards.forEach(card => card.addEventListener('click', flipCard));
 
     newGame.addEventListener('click', () => {
-        
-        localStorage.setItem('turns', turns);
-        console.log(localStorage.getItem('turns'));
 
         turns = 0;
         let flips = document.querySelectorAll('.flip');
@@ -83,11 +109,9 @@ function AddFlipCard() {
         score.classList.remove('score_active');
         AddFlipCard();
         shuffle();
-        
+
     });
 };
-
-
 
 AddFlipCard();
 shuffle();
