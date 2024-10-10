@@ -57,30 +57,21 @@ function resetBoard() {
     if (flips.length === cards.length) {
 
         recordTableElement.innerHTML = '';
-        if (recordTable.length = 10) {
+        if (recordTable.length === 10) {
             recordTable.splice(0, 1);
         }
         recordTable.push(turns);
         localStorage.setItem('recordTable', JSON.stringify(recordTable));
         
         textContent = `Number of turns: \n`;
-        recordTable.forEach(element => {
-
-        });
+        
         for (let index = 0; index < recordTable.length; index++) {
 
             const element = recordTable[index];
 
             newString = document.createElement('div');
             newString.textContent = `${index + 1}. ${element}`;
-
-            if (index === recordTable.length - 1 ) {
-                newString.style.fontWeight = 'bold';
-                newString.style.color = 'aqua';
-            };
-
             recordTableElement.appendChild(newString);
-
         }
 
         turns = 0;
