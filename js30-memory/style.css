@@ -10,7 +10,7 @@ html {
     box-sizing: border-box;
   }
 
-  body {
+  .wrapper {
     height: 100vh;
     display: flex;
     background-image: url(src/background.jpg);
@@ -160,6 +160,11 @@ html {
   }
 
   @media only screen and (max-width: 430px) {
+    
+    body {
+      /* max-width: 43rem; */
+    }
+    
     .memory-game {
       max-width: 40rem;
       max-height: 68rem;
