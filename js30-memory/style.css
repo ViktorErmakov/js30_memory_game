@@ -151,3 +151,8 @@ html {
   .recordTable {
     font-size: 2rem;
   }
+  
+  .recordTable div:last-child {
+    font-weight: bold;
+    color: aqua;
+  }
