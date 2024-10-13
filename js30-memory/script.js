@@ -1,5 +1,5 @@
-const cards = document.querySelectorAll('.memory-card');
 
+const memoryGame = document.querySelector(".memory-game");
 let hasFlippedCard = false;
 let firstCard, secondCard;
 let lockBoard = false;
@@ -8,6 +8,7 @@ let recordTableElement = document.querySelector('.recordTable');
 let score = document.querySelector('.score');
 const newGame = document.querySelector('.newGame');
 let recordTable = localStorage.getItem('recordTable') == undefined ? [] : JSON.parse(localStorage.getItem('recordTable'));
+let usedNumbers = [];
 // console.log(recordTable);
 
 function flipCard() {
@@ -52,6 +53,7 @@ function unflipCards() {
 function resetBoard() {
     [hasFlippedCard, lockBoard] = [false, false];
     [firstCard, secondCard] = [null, null];
+    const cards = document.querySelectorAll('.memory-card');
 
     let flips = document.querySelectorAll('.flip');
     if (flips.length === cards.length) {
@@ -80,14 +82,16 @@ function resetBoard() {
 }
 
 function shuffle() {
+    const cards = document.querySelectorAll('.memory-card');
     cards.forEach(card => {
-        let ramdomPos = Math.floor(Math.random() * 12);
-        card.style.order = ramdomPos;
+        let randomPos = Math.floor(Math.random() * 12);
+        card.style.order = randomPos;
     });
 };
 
 function AddFlipCard() {
-
+    
+    const cards = document.querySelectorAll('.memory-card');
     cards.forEach(card => card.addEventListener('click', flipCard));
 
     newGame.addEventListener('click', () => {
@@ -104,5 +108,53 @@ function AddFlipCard() {
     });
 };
 
+function AbbCard() {
+    usedNumbers  = [];
+    while (usedNumbers.length < 6) {
+        let randomCardNumber = Math.floor(Math.random() * 15);
+        if (usedNumbers.includes(randomCardNumber) || randomCardNumber === 0) {
+            continue;
+        }
+        usedNumbers.push(randomCardNumber);
+       
+        newElement = document.createElement('div');
+        newElement.classList.add('memory-card');
+        newElement.id = randomCardNumber;
+
+        frontImage = document.createElement('img');
+        frontImage.classList.add('front-face');
+        frontImage.src = `src/${randomCardNumber}.jpg`;
+
+        backImg = document.createElement('img');
+        backImg.classList.add('back-face');
+        backImg.src = 'src/back-face.jpg';
+
+        newElement.append(frontImage);
+        newElement.append(backImg);
+        memoryGame.append(newElement);
+
+
+        newElement = document.createElement('div');
+        newElement.classList.add('memory-card');
+        newElement.id = randomCardNumber;
+
+        frontImage = document.createElement('img');
+        frontImage.classList.add('front-face');
+        frontImage.src = `src/${randomCardNumber}.jpg`;
+
+        backImg = document.createElement('img');
+        backImg.classList.add('back-face');
+        backImg.src = 'src/back-face.jpg';
+
+        newElement.append(frontImage);
+        newElement.append(backImg);
+        memoryGame.append(newElement);
+        
+
+    }
+    
+}
+
+AbbCard();
 AddFlipCard();
 shuffle();
