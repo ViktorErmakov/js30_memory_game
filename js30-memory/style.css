@@ -74,14 +74,13 @@ html {
   }
 
   footer {
-    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    top: 90vh;
     padding-left: 1rem;
     padding-right: 1rem;
+    margin-top: 3rem;
     opacity: .3;
     z-index: 0;
   }
